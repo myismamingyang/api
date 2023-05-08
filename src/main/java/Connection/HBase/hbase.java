@@ -21,6 +21,7 @@ public class hbase {
     public static void main(String[] args)throws IOException{
         //创建一个表，表名为Score，列族为sname,course
         createTable("test_01",new String[]{"sname","course"});
+        //init();
     }
 
     //建立连接
