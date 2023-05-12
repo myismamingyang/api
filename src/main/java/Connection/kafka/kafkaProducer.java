@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class kafkaProducer {
     public static void main(String[] args) throws Exception {
-        //TODO 0.准备连接参数--不需要记
+        // 0.准备连接参数--不需要记
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "node1:9092");
         props.put("acks", "all");
@@ -20,14 +20,14 @@ public class kafkaProducer {
         props.put("max.request.size", 163840);
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //TODO 1.创建Kafka生产者对象
+        // 1.创建Kafka生产者对象
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(props);
 
         Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd=HH:mm:ss");
-        //TODO 2.同步发送/推送数据/消息/记录到Kafka
-        for (int i = 0; i < 30; i++) {
-            ProducerRecord<String, String> record = new ProducerRecord<>("kafkaToMysql",  simpleDateFormat.format(date)+ "-" + i );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
+        // 2.同步发送/推送数据/消息/记录到Kafka
+        for (int i = 1; i <= 300; i++) {
+            ProducerRecord<String, String> record = new ProducerRecord<>("kafkaToMysql", simpleDateFormat.format(date)+ "_" + i );
             RecordMetadata metadata = kafkaProducer.send(record).get();
             System.out.println("消息已经同步发送成功一条:" +
                     "topic:"+metadata.topic()+
@@ -37,7 +37,7 @@ public class kafkaProducer {
                     " value:" + record.value());
         }
         System.out.println("消息已经同步发送成功");
-        //TODO 2.异步发送/推送数据/消息/记录到Kafka
+        // 2.异步发送/推送数据/消息/记录到Kafka
         /*for (int i = 0; i < 10; i++) {
             ProducerRecord<String, String> record = new ProducerRecord<>("test", 3,"key", "value" + i);
             kafkaProducer.send(record, new Callback() {
