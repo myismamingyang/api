@@ -20,8 +20,8 @@ public class hbase {
     //主函数中的语句请逐句执行，只需删除其前的//即可，如：执行insertRow时请将其他语句注释
     public static void main(String[] args)throws IOException{
         //创建一个表，表名为Score，列族为sname,course
+        init();
         createTable("test_01",new String[]{"sname","course"});
-        //init();
     }
 
     //建立连接
