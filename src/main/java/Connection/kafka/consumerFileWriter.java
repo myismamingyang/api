@@ -31,9 +31,7 @@ public class consumerFileWriter {
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println("将消息写入文件");
                 System.out.printf("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value());
-
-                String message = String.format("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value());
-                bw.write(message);
+                bw.write(String.format("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value()));
                 bw.flush();
             }
         }
