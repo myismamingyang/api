@@ -24,14 +24,29 @@ public class consumerFileWriter {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(Arrays.asList("kafkaToMysql"));
         System.out.println("消费 Kafka 消息并写入本地文件");
-        FileWriter fw = new FileWriter("E:\\opt\\develop\\java\\javaProjects\\QQ110_Projects\\api\\src\\main\\out\\kafkaToMysql_demo.txt", true);
+        FileWriter fw =
+                new FileWriter(
+                        "E:\\opt\\develop\\java\\javaProjects\\QQ110_Projects\\" +
+                                "api\\src\\main\\out\\" +
+                                "kafkaToMysql_demo.txt"
+                        , true);
         BufferedWriter bw = new BufferedWriter(fw);
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(1000);
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println("将消息写入文件");
-                System.out.printf("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value());
-                bw.write(String.format("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value()));
+                System.out.printf(
+                        "partiton = %d, offset = %d, key = %s, value = %s%n"
+                        , record.partition()
+                        , record.offset()
+                        , record.key()
+                        , record.value());
+                bw.write(String.format(
+                        "partiton = %d, offset = %d, key = %s, value = %s%n"
+                        , record.partition()
+                        , record.offset()
+                        , record.key()
+                        , record.value()));
                 bw.flush();
             }
         }

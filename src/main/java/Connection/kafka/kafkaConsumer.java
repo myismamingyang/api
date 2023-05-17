@@ -24,7 +24,12 @@ public class kafkaConsumer {
         while (true) {
             ConsumerRecords<String, String> records = consumer0.poll(1000);
             for (ConsumerRecord<String, String> record : records) {
-                System.out.printf("partiton = %d, offset = %d, key = %s, value = %s%n", record.partition(), record.offset(), record.key(), record.value());
+                System.out.printf(
+                        "partiton = %d, offset = %d, key = %s, value = %s%n"
+                        , record.partition()
+                        , record.offset()
+                        , record.key()
+                        , record.value());
             }
         }
     }

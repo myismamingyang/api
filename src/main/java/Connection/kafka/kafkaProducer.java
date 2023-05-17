@@ -28,7 +28,8 @@ public class kafkaProducer {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd+HH:mm:ss");
         // 2.同步发送/推送数据/消息/记录到Kafka
         for (int i = 1; i <= 300; i++) {
-            ProducerRecord<String, String> record = new ProducerRecord<>("kafkaToMysql", i + "_-test-_" + simpleDateFormat.format(date));
+            ProducerRecord<String, String> record =
+                    new ProducerRecord<>("kafkaToMysql", i + "_-test-_" + simpleDateFormat.format(date));
             RecordMetadata metadata = kafkaProducer.send(record).get();
             System.out.println("消息已经同步发送成功一条:" +
                     "topic:" + metadata.topic() +

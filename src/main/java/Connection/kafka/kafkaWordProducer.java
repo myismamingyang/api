@@ -37,10 +37,12 @@ public class kafkaWordProducer {
 //                    " partition:"+metadata.partition()+
 //                    " offset:"+metadata.offset());
 //        }
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/source/data/word.txt"));
+        BufferedReader bufferedReader = new BufferedReader(
+                new FileReader("src/source/data/word.txt"));
         String str = null;
         while ((str = bufferedReader.readLine())!=null) {
-            ProducerRecord<String, String> record = new ProducerRecord<>("word", 3, "word",str.toString());
+            ProducerRecord<String, String> record =
+                    new ProducerRecord<>("word", 3, "word",str.toString());
             RecordMetadata metadata = kafkaProducer.send(record).get();
             System.out.println("消息已经同步发送成功一条:" +
                     "topic:"+metadata.topic()+
