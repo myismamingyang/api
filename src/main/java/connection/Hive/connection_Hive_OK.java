@@ -1,4 +1,4 @@
-package Connection.Hive;
+package connection.Hive;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package Connection.kafka;
+package connection.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
