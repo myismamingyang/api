@@ -4,29 +4,28 @@ import org.apache.hadoop.hbase.io.hfile.HFile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Iterator;
 
 
 public class toBase64 {
     public static void main(String[] args) throws IOException {
-
         String path = "F:\\asd";
         File file = new File(path);
         File[] files = file.listFiles();
         for (int i = 0; i < files.length; i++) {
             String name = files[i].getName();
-            //FileInputStream fi = new FileInputStream("C:\\Users\\14652\\Pictures\\Screenshots\\qwe.png");
-            //FileOutputStream fo = new FileOutputStream("C:\\Users\\14652\\Pictures\\Screenshots\\out_qwe.png");
+            String[] split = name.split("\\.", 2);
             FileInputStream fi = new FileInputStream(path + "\\" + name);
-            FileOutputStream fo = new FileOutputStream(path + "\\" + "out_" + name);
+            FileWriter fw = new FileWriter(path + "\\" + "outBase64_" + split[0] + ".txt");
             byte[] buf = new byte[1024];
             int len = 0;
-            while ((len = fi.read(buf)) != -1)//如果不是-1就一直往里面进行装
-            {
-                fo.write(buf, 0, len);
-                fo.flush();
+            while ((len = fi.read(buf)) != -1) {
+                String base64 = Base64.getEncoder().encodeToString(buf);
+                fw.write(base64);
+                fw.flush();
             }
-            fo.close();
+            fw.close();
             fi.close();
         }
     }
