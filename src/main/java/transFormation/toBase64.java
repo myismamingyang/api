@@ -10,10 +10,10 @@ import java.util.Iterator;
 public class toBase64 {
     public static void main(String[] args) throws IOException {
 
-        String path = new String("C:\\Users\\14652\\Pictures\\Screenshots");
+        String path = new String("F:\\asd");
         File file = new File(path);
         File[] files = file.listFiles();
-        for (int i = 0; i < file.length(); i++) {
+        for (int i = 0; i < file.length()-1; i++) {
             String name = files[i].getName();
             //FileInputStream fi = new FileInputStream("C:\\Users\\14652\\Pictures\\Screenshots\\qwe.png");
             //FileOutputStream fo = new FileOutputStream("C:\\Users\\14652\\Pictures\\Screenshots\\out_qwe.png");
@@ -25,8 +25,8 @@ public class toBase64 {
             {
                 fo.write(buf, 0, len);
             }
-            fi.close();
             fo.close();
+            fi.close();
         }
     }
 }
