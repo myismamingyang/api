@@ -1,11 +1,7 @@
 package transFormation;
 
-import org.apache.hadoop.hbase.io.hfile.HFile;
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Iterator;
 
 
 public class toBase64 {
