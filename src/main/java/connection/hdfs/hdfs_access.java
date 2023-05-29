@@ -42,12 +42,8 @@ public class hdfs_access {
         IOUtils.closeQuietly(outputStream);
         fileSystem.close();
     }
-    public static void hPut(FileSystem fileSystem,String hdfsPath,String localPath) throws IOException {
-        FSDataInputStream inputStream = fileSystem.open(new Path(hdfsPath));
-        FileOutputStream outputStream = new FileOutputStream(new File(localPath));
-        IOUtils.copy(inputStream,outputStream );
-        IOUtils.closeQuietly(inputStream);
-        IOUtils.closeQuietly(outputStream);
+    public static void hPut(FileSystem fileSystem,String localPath,String hdfsPath) throws IOException {
+        fileSystem.copyFromLocalFile(new Path(localPath),new Path(hdfsPath));
         fileSystem.close();
     }
 }
