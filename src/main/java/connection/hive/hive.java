@@ -1,4 +1,4 @@
-package connection.Hive;
+package connection.hive;
 
 import java.sql.*;
 

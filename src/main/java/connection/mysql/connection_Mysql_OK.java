@@ -1,22 +1,21 @@
-package connection.Hive;
+package connection.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class connection_Hive_OK {
+public class connection_Mysql_OK {
     public static String ip = "node3";
     public static String user = "root";
     public static String password = "MMYqq123";
-    public static String db = "myhive";
+    public static String db = "my";
 
     public static void main(String[] args) {
         Connection con;
         //jdbc驱动
-        String driver = "org.apache.hive.jdbc.HiveDriver";
+        String driver = "com.mysql.cj.jdbc.Driver";
         //这行代码请注意：demo是你自己定义的数据库，若未定义，编译则会报错找不到demo
-        String url = "jdbc:hive2://" + ip + ":10000/" + db;  // + "?&useSSL=false&serverTimezone=UTC";
-
+        String url = "jdbc:mysql://" + ip + ":3306/" + db + "?&serverTimezone=UTC";  // + "?&useSSL=false&serverTimezone=UTC";
 
         try {
             //注册JDBC驱动程序
